@@ -1,35 +1,58 @@
-const people = [
+let movies = [
   {
-    id: '0',
-    name: '이성재',
-    age: 27,
-    gender: 'female',
+    id: 1,
+    name: '스타워즈',
+    score: 1,
   },
   {
-    id: '1',
-    name: '누구',
-    age: 20,
-    gender: 'male',
+    id: 2,
+    name: '라라랜드',
+    score: 8,
   },
   {
-    id: '2',
-    name: '홍길동',
-    age: 22,
-    gender: 'male',
+    id: 3,
+    name: '어벤져스',
+    score: 7,
   },
   {
-    id: '3',
-    name: '성춘향',
-    age: 18,
-    gender: 'female',
+    id: 4,
+    name: '데스노트',
+    score: 5,
+  },
+  {
+    id: 5,
+    name: '조커',
+    score: 8,
   },
 ];
 
 const getById = (id) => {
-  const filteredPeople = people.filter((person) => person.id === String(id));
-  console.log(filteredPeople[0]);
-  return filteredPeople[0];
+  const filteredMovies = movies.filter((movie) => movie.id === String(id));
+  // console.log(filteredMovies[0]);
+  return filteredMovies[0];
 };
 
-module.exports.people = people;
+const deleteMovie = (id) => {
+  const cleanedMovies = movies.filter((movie) => movie.id !== String(id));
+  if (movies.length > cleanedMovies.length) {
+    movies = cleanedMovies;
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const addMovie = (name, score) => {
+  const newMovie = {
+    id: `${movies.length + 1}`,
+    name,
+    score,
+  };
+  movies.push(newMovie);
+  return newMovie;
+};
+
+module.exports.getMovies = movies;
 module.exports.getById = getById;
+module.exports.deleteMovie = deleteMovie;
+module.exports.addMovie = addMovie;
